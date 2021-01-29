@@ -45,7 +45,7 @@ namespace AL.AsAbove
         public override void OnConnectedToMaster()
         {
             Debug.Log("PUN Launcher: ConnectedToMaster was called by PUN");
-            PhotonNetwork.JoinRoom(roomName);
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom}, TypedLobby.Default);
         }
 
         public override void OnDisconnected(DisconnectCause cause)
