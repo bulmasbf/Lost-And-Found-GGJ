@@ -14,9 +14,15 @@ namespace AL.AsAbove
         [SerializeField]
         private byte maxPlayerPerRoom= 2;
 
-        [Tooltip("Name of the room to connect to.")]
-        [SerializeField]
-        private string roomName = "Test Room";
+        private string roomName;
+
+        public GameObject preConnectionUI;
+
+        public GameObject connectingUI;
+
+        public GameObject postConnectionUI;
+
+        public TMPro.TextMeshProUGUI postConnectionRoomText;
 
         void Awake()
         {
@@ -26,26 +32,40 @@ namespace AL.AsAbove
         // Start is called before the first frame update
         void Start()
         {
-            Connect();
+            
         }
 
         public void Connect()
         {
             if (PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.JoinRoom(roomName);
+                if(!string.IsNullOrEmpty(roomName))
+                {
+                    TogglePreConnectionUI();
+                    ToggleConnectingUI();
+                    PhotonNetwork.JoinRoom(roomName);
+                }
             }
             else
             {
-                PhotonNetwork.ConnectUsingSettings();
-                PhotonNetwork.GameVersion = gameVersion;
+                if (!string.IsNullOrEmpty(roomName))
+                {
+                    TogglePreConnectionUI();
+                    ToggleConnectingUI();
+                    PhotonNetwork.ConnectUsingSettings();
+                    PhotonNetwork.GameVersion = gameVersion;
+                }
             }
         }
 
         public override void OnConnectedToMaster()
         {
             Debug.Log("PUN Launcher: ConnectedToMaster was called by PUN");
-            PhotonNetwork.JoinRoom(roomName);
+            
+            if(!string.IsNullOrEmpty(roomName))
+            {
+                PhotonNetwork.JoinRoom(roomName);
+            }
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -55,13 +75,65 @@ namespace AL.AsAbove
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
-            Debug.Log("PUN Launcher: OnJoinRandomFailed was called by PUN. No random room available, so we create one. /nCalling: PhotonNetwork.CreateRoom");
-            PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom });
+            Debug.Log("PUN Launcher: OnJoinRoomFailed was called by PUN. No random room available, so we create one. /nCalling: PhotonNetwork.CreateRoom");
+            
+            if(!string.IsNullOrEmpty(roomName))
+            {
+                PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom });
+            }
+
         }
 
         public override void OnJoinedRoom()
         {
+            ToggleConnectingUI();
+            TogglePostConnectionUI();
             Debug.Log("PUN Launcher: OnJoinedRoom() called by PUN. Now this client is in room: " + roomName);
+        }
+
+        public void SetRoomName(string inputRoomName)
+        {
+            roomName = inputRoomName;
+        }
+
+        public void TogglePreConnectionUI()
+        {
+            if (preConnectionUI.activeInHierarchy)
+            {
+                preConnectionUI.SetActive(false);
+                return;
+            }
+            else
+            {
+                preConnectionUI.SetActive(true);
+            }
+        }
+
+        public void ToggleConnectingUI()
+        {
+            if (connectingUI.activeInHierarchy)
+            {
+                connectingUI.SetActive(false);
+                return;
+            }
+            else
+            {
+                connectingUI.SetActive(true);
+            }
+        }
+
+        public void TogglePostConnectionUI()
+        {
+            if (postConnectionUI.activeInHierarchy)
+            {
+                postConnectionUI.SetActive(false);
+                return;
+            }
+            else
+            {
+                postConnectionRoomText.text = roomName;
+                postConnectionUI.SetActive(true);
+            }
         }
     }
 }
