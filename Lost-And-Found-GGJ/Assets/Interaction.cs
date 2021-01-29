@@ -2,41 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
-    public enum state {Forward, Back, Left, Right, PressurePlateOn, PressurePlateOff };
+    public enum state {Forward, Back, Left, Right};
     public state InteractableState;
 
     public TextMeshProUGUI instructionText;
-    public TextMeshProUGUI pressurePlateText;
 
     void Start()
     {
-        if (gameObject.CompareTag("Back"))
+        if (gameObject.name == "Back")
         {
             InteractableState = state.Back;
         }
 
-        if (gameObject.CompareTag("Forward"))
+        if (gameObject.name == "Forward")
         {
             InteractableState = state.Forward;
         }
 
-        if (gameObject.CompareTag("Left"))
+        if (gameObject.name == "Left")
         {
             InteractableState = state.Left;
         }
 
-        if (gameObject.CompareTag("Right"))
+        if (gameObject.name == "Right")
         {
             InteractableState = state.Right;
-        }
-
-        if(gameObject.CompareTag("PressurePlate"))
-        {
-            InteractableState = state.PressurePlateOff;
-            Interact();
         }
     }
 
@@ -59,34 +53,6 @@ public class Interaction : MonoBehaviour
             case state.Right:
                 instructionText.text = "Right";
                 break;
-
-            case state.PressurePlateOn:
-                pressurePlateText.text = "PP On";
-                Debug.Log("Preassure Plate On");
-                break;
-
-            case state.PressurePlateOff:
-                pressurePlateText.text = "PP Off";
-                Debug.Log("Preassure Plate Off");
-                break;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player") && gameObject.CompareTag("PressurePlate"))
-        {
-            InteractableState = state.PressurePlateOn;
-            Interact();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && gameObject.CompareTag("PressurePlate"))
-        {
-            InteractableState = state.PressurePlateOff;
-            Interact();
         }
     }
 }

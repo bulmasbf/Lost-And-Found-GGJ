@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - PressurePlate
-  - Forward
-  - Back
-  - Left
-  - Right
+  tags: []
   layers:
   - Default
   - TransparentFX
