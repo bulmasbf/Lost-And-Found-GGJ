@@ -45,7 +45,7 @@ namespace AL.AsAbove
         public override void OnConnectedToMaster()
         {
             Debug.Log("PUN Launcher: ConnectedToMaster was called by PUN");
-            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom}, new TypedLobby(roomName, LobbyType.Default));
+            PhotonNetwork.JoinRoom(roomName);
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -53,7 +53,7 @@ namespace AL.AsAbove
             Debug.LogWarningFormat("PUN Launcher: OnDisconnected was called by PUN with reason {0}", cause);
         }
 
-        public override void OnJoinRandomFailed(short returnCode, string message)
+        public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.Log("PUN Launcher: OnJoinRandomFailed was called by PUN. No random room available, so we create one. /nCalling: PhotonNetwork.CreateRoom");
             PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom });
