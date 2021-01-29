@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class FirstPersonLook : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class FirstPersonLook : MonoBehaviour
 
     public float interactRange;
 
+    public TextMeshProUGUI pressEText;
 
     void Reset()
     {
@@ -21,6 +23,7 @@ public class FirstPersonLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        pressEText.enabled = false;
     }
 
     void Update()
@@ -41,17 +44,25 @@ public class FirstPersonLook : MonoBehaviour
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
 
-
         RaycastHit hit;
 
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRange))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+            pressEText.enabled = true;
             Debug.Log("Hit");
+
+            Interaction interaction = hit.collider.gameObject.GetComponent<Interaction>();
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                interaction.Interact();
+            }
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * interactRange, Color.red);
+            pressEText.enabled = false;
             Debug.Log("No Hit");
         }
     }
