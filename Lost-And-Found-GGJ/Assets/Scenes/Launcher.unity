@@ -1036,7 +1036,7 @@ MonoBehaviour:
   PostConnectionUI: {fileID: 2038256852}
   P1AssignedSprite: {fileID: 1244122003}
   P2AssignedSprite: {fileID: 706116243}
-  startGameButton: {fileID: 0}
+  startGameButton: {fileID: 1420155752}
   PostConnectionRoomText: {fileID: 922724591}
 --- !u!4 &1080790874
 Transform:
