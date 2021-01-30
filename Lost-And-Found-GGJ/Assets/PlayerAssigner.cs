@@ -129,6 +129,7 @@ public class PlayerAssigner : MonoBehaviour
         if (!PhotonNetwork.IsMasterClient)
         {
             Debug.Log("Only the master client is allowed to start the game.");
+            return;
         }
 
         Launcher.Instance.LoadScene("Game");
