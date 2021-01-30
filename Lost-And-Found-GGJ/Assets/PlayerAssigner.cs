@@ -11,9 +11,7 @@ public class PlayerAssigner : MonoBehaviour
 
     PhotonView photonView;
 
-    [SerializeField]
     private string Player1ID;
-    [SerializeField]
     private string Player2ID;
 
     public bool P1AssignedBool = false;
