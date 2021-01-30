@@ -30,6 +30,8 @@ public class PlayerAssigner : MonoBehaviour
         }
 
         photonView = PhotonView.Get(this);
+
+        DontDestroyOnLoad(this);
     }
 
     private void SendRPCMethod(string methodName, RpcTarget targets, string arg)
@@ -50,6 +52,11 @@ public class PlayerAssigner : MonoBehaviour
             UIHandler.Instance.TogglePlayerAssignedSprite(1);
             P1AssignedBool = true;
             SendRPCMethod(nameof(SendPlayer1Assignment), RpcTarget.Others, Player1ID);
+
+            if(P1AssignedBool && P2AssignedBool)
+            {
+                UIHandler.Instance.ToggleStartGameButton();
+            }
             
         }
     }
@@ -67,6 +74,11 @@ public class PlayerAssigner : MonoBehaviour
             Player1ID = sentId;
             UIHandler.Instance.TogglePlayerAssignedSprite(1);
             P1AssignedBool = true;
+
+            if (P1AssignedBool && P2AssignedBool)
+            {
+                UIHandler.Instance.ToggleStartGameButton();
+            }
         }
     }
 
@@ -83,6 +95,11 @@ public class PlayerAssigner : MonoBehaviour
             UIHandler.Instance.TogglePlayerAssignedSprite(2);
             P2AssignedBool = true;
             SendRPCMethod(nameof(SendPlayer2Assignment), RpcTarget.Others, Player2ID);
+
+            if (P1AssignedBool && P2AssignedBool)
+            {
+                UIHandler.Instance.ToggleStartGameButton();
+            }
         }
     }
 
@@ -99,6 +116,21 @@ public class PlayerAssigner : MonoBehaviour
             Player2ID = sentId;
             UIHandler.Instance.TogglePlayerAssignedSprite(2);
             P2AssignedBool = true;
+
+            if (P1AssignedBool && P2AssignedBool)
+            {
+                UIHandler.Instance.ToggleStartGameButton();
+            }
         }
+    }
+
+    public void BeginGame()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("Only the master client is allowed to start the game.");
+        }
+
+        Launcher.Instance.LoadScene("Game");
     }
 }

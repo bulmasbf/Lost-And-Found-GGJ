@@ -18,6 +18,8 @@ public class UIHandler : MonoBehaviourPunCallbacks
 
     public GameObject P2AssignedSprite;
 
+    public GameObject startGameButton;
+
 
     public TMPro.TextMeshProUGUI PostConnectionRoomText;
 
@@ -103,6 +105,18 @@ public class UIHandler : MonoBehaviourPunCallbacks
                 }
                 break;
         }
-    }   
+    }
+    
+    public void ToggleStartGameButton()
+    {
+        if(startGameButton.activeInHierarchy == false)
+        {
+            startGameButton.SetActive(true);
+        }
+        else
+        {
+            startGameButton.SetActive(false);
+        }
+    }
 }
 

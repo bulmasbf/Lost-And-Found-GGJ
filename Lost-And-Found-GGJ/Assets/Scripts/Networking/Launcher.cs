@@ -32,6 +32,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
 
         PhotonNetwork.AutomaticallySyncScene = true;
+
+        DontDestroyOnLoad(this);
     }
         
     public void Connect()
@@ -80,7 +82,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayerPerRoom });
         }
-
     }
 
     public override void OnJoinedRoom()
@@ -90,6 +91,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("PUN Launcher: OnJoinedRoom() called by PUN. Now this client is in room: " + roomName);
     }
 
-        
+    public void LoadScene(string sceneName)
+    {
+        PhotonNetwork.LoadLevel(sceneName);
+    }     
 }
 
