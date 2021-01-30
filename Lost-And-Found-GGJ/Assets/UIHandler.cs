@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class UIHandler : MonoBehaviour
+using Photon.Pun;
+public class UIHandler : MonoBehaviourPunCallbacks
 {
     private static UIHandler _instance;
 
@@ -17,6 +17,7 @@ public class UIHandler : MonoBehaviour
     public GameObject P1AssignedSprite;
 
     public GameObject P2AssignedSprite;
+
 
     public TMPro.TextMeshProUGUI PostConnectionRoomText;
 
@@ -102,6 +103,6 @@ public class UIHandler : MonoBehaviour
                 }
                 break;
         }
-    }
+    }   
 }
 

@@ -209,7 +209,7 @@ MonoBehaviour:
       - m_Target: {fileID: 649467319}
         m_TargetAssemblyTypeName: PlayerAssigner, Assembly-CSharp
         m_MethodName: AssignPlayer2
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -601,6 +601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649467320}
   - component: {fileID: 649467319}
+  - component: {fileID: 649467321}
   m_Layer: 0
   m_Name: PlayerAssigner
   m_TagString: Untagged
@@ -622,6 +623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1ID: 0
   Player2ID: 0
+  P1AssignedBool: 0
+  P2AssignedBool: 0
 --- !u!4 &649467320
 Transform:
   m_ObjectHideFlags: 0
@@ -636,6 +639,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649467321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649467318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 0
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &706116243
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706116244}
   - component: {fileID: 706116245}
+  - component: {fileID: 706116246}
   m_Layer: 0
   m_Name: Clappa_P2
   m_TagString: Untagged
@@ -718,6 +744,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &706116246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706116243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &737752453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244122004}
   - component: {fileID: 1244122005}
+  - component: {fileID: 1244122006}
   m_Layer: 0
   m_Name: Clappa_P1
   m_TagString: Untagged
@@ -1267,6 +1316,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1244122006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244122003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1244673337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,7 +2014,7 @@ MonoBehaviour:
       - m_Target: {fileID: 649467319}
         m_TargetAssemblyTypeName: PlayerAssigner, Assembly-CSharp
         m_MethodName: AssignPlayer1
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
