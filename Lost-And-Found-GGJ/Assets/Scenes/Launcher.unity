@@ -621,8 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d8d4ecf46da334a813b9c86b99d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1ID: 0
-  Player2ID: 0
+  Player1ID: 
+  Player2ID: 
   P1AssignedBool: 0
   P2AssignedBool: 0
 --- !u!4 &649467320
